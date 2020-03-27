@@ -1,0 +1,70 @@
+html,
+body {
+	/* background-image: url('../../script/image/bg-2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat; */
+	height: 100%;
+	font-family: 'Numans', sans-serif;
+}
+h1 {
+	padding: 19px 0;
+}
+
+.container {
+	height: 100%;
+	align-content: center;
+}
+.upper-bar {
+	padding: 10px;
+	background-color: #fff;
+}
+/* login page */
+.login-page h1 {
+	color: #c0c0c0;
+}
+.login-page h1 span {
+	cursor: pointer;
+}
+.login-page [data-class="login"].selected {
+	color: #337ab7;
+}
+.login-page [data-class="signup"].selected {
+	color: #5cb85c;
+}
+.login-page .signup {
+	display: none;
+}
+
+.item-box {
+	position: relative;
+}
+.item-box .card-body p{
+	height: 44px;
+	max-height: 44px;
+}
+.item-box .price-tag {
+	background-color: #b4b4b4;
+	padding: 2px 20px;
+	position: absolute;
+	left: 0;
+	top: 5px;
+	font-weight: bold;
+	color: #fff;
+}
+.item-box .approve-status {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	background-color: #b85a5a;
+	color: #FFF;
+	padding: 3px 5px;
+}
+
+/* profile start */
+.block{
+
+	margin: 20px 0 ;
+}
+
+
+/* profile end */

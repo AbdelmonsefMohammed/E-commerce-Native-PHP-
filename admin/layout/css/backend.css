@@ -1,0 +1,282 @@
+
+        html, body {
+            /* background-image: url('../../script/image/bg-2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat; */
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+
+        .container {
+            height: 100%;
+            align-content: center;
+        }
+
+        .index .card {
+            height: 370px;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 400px;
+            background-color: rgba(0,0,0,0.5) !important;
+        }
+
+        .social_icon span {
+            font-size: 60px;
+            margin-left: 10px;
+        }
+
+        .fa-blue {
+            color: #3B5998;
+        }
+
+        .fa-orange {
+            color: #dd4b39;
+        }
+
+        .fa-liteblue {
+            color: #55acee;
+        }
+
+        .social_icon span:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+        .card-header h3 {
+            color: white;
+        }
+
+        .social_icon {
+            position: absolute;
+            right: 20px;
+            top: -45px;
+        }
+
+        .input-group-prepend span i {
+            background-color: #7f0000;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 8px;
+            border: 0 !important;
+        }
+
+        input:focus {
+            outline: 0 0 0 0 !important;
+            box-shadow: 0 0 0 0 !important;
+        }
+
+        .login_btn {
+            color: white;
+            background-color: #7f0000;
+            width: 100px;
+            cursor:pointer;
+        }
+
+            .login_btn:hover {
+                color: black;
+                background-color: white;
+            }
+
+        .links {
+            color: white;
+        }
+
+            .links a {
+                margin-left: 4px;
+            }
+
+ .show-pass{
+     position: absolute;
+     top: 6px;
+     right: -30px;
+ }
+
+
+ /* members page  */
+
+ .activate, .approve{
+     margin-left: 5px;
+ }
+
+/* dashboard page */
+.home-stats h1{
+    margin: 30px 0;
+}
+.home-stats .stat{
+    position: relative;
+    overflow: hidden;
+}
+.home-stats .stat i{
+    position: absolute;
+    font-size: 80px;
+    top: 35px;
+    left: 30px;
+}
+.home-stats .info{
+float: right;
+}
+.home-stats a{
+    text-decoration: none;
+}
+ .home-stats .stat{
+     padding: 20px;
+     font-size: 15px;
+     color: #fff;
+     border-radius: 10px;
+ }
+ .home-stats .stat span {
+     display: block;
+     font-size: 60px;
+ }
+ .home-stats .latest .toggle-info{
+     color: #999;
+     cursor: pointer;
+ }
+ .home-stats .latest .toggle-info:hover{
+    color: #444;
+}
+ .home-stats .latest{
+     text-align: left;
+     margin-top: 40px;
+ }
+ .home-stats .st-members{
+    background-color: #3498db;
+ }
+ .home-stats .st-pending{
+    background-color: #c0392b;
+ }
+ .home-stats .st-items{
+    background-color: #d35400;
+ }
+ .home-stats .st-comments{
+    background-color: #8344ad;
+ }
+
+
+ .latest-users{
+     margin-bottom: 0;
+ }
+ .latest-users li{
+    padding: 10px;
+    overflow: hidden;
+ }
+ .latest-users li:nth-child(odd){
+     background-color: #EEE;
+ }
+ .latest-users .btn-success,
+ .latest-users .btn-info{
+     padding: 2px 8px;
+ }
+ .latest-users .btn-info{
+     margin-right: 5px;
+ }
+.latest .comment-box{
+    margin: 5px 0 10px ;
+}
+.latest .comment-box .member-n,
+.latest .comment-box .member-c{
+    float: left;
+}
+.latest .comment-box .member-n{
+    width: 80px;
+    text-align: center;
+    margin-right: 10px;
+    position: relative;
+    top: 8px;
+}
+.latest .comment-box .member-c{
+    width: calc(100% - 100px);
+    background-color: #EFEFEF;
+    padding: 10px;
+    position: relative;
+}
+.latest .comment-box .member-c::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent  #EFEFEF transparent transparent;
+    border-width: 15px;
+}
+ /*Categories page*/
+.cat{
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.cat:hover{
+    background-color: #EEE;
+}
+ .cat h3{
+     margin: 0;
+     cursor: pointer;
+ } 
+.cat .full-view p{
+    margin: 10px 0;
+}
+.categories .option a{  
+    color: #888;
+    text-decoration: none;
+
+ }
+ .categories .option span{  
+    color: #888;
+    cursor: pointer;
+ }
+ .categories .option .active{  
+    color: #F00;
+ }
+.categories hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ .cat:hover .hidden-buttons{
+     right: 10px;
+ }
+ .cat .hidden-buttons{
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    position: absolute;
+    top: 10px;
+    right: -180px;
+}
+ .cat .hidden-buttons a{
+     margin-right: 5px;
+ }
+
+ .cat:last-of-type ~ hr{
+     display: none;
+ }
+ .cat span{
+    color: #fff;
+    padding: 4px 6px;
+    margin-right:6px;
+    border-radius: 6px;
+ }
+ .cat .visibility{
+     background-color: #d35400;
+
+ }
+ .cat .comment{
+    background-color: #2c3e50;
+}
+.cat .ads{
+    background-color: #c0392b;
+}
+.add-category{
+    margin: 20px 0;
+}
+
+.selectboxit-container{
+    width: 100%;
+}
+.selectboxit-container .selectboxit{
+    width: 100%;
+}
