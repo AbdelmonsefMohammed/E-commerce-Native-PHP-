@@ -14,7 +14,7 @@
                 echo "<div class='col-sm-6 col-md-3 mt-3'>";
                     echo "<div class='card item-box'>";
                         echo "<span class='price-tag'>{$item['Price']}</span>";
-                        echo "<img class='img-fluid' src='img1.jpg' class='card-img-top'>";
+                        echo "<img style='height:200px;max-height:200px;' class='img-fluid' src='admin/uploads/posts/{$item['Image']}' class='card-img-top'>";
                         echo "<div class='card-body'>";
                             echo "<a href='items.php?itemid={$item['Item_ID']}'><h5 class='card-title'>{$item['Name']}</h5></a>";
                             echo "<p class='card-text'>{$item['Description']}</p>";

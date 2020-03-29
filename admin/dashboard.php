@@ -146,7 +146,9 @@
                                                        INNER JOIN
                                                              users
                                                         ON
-                                                             users.UserID = comments.User_ID");
+                                                             users.UserID = comments.User_ID
+                                                        ORDER BY c_id DESC
+                                                        LIMIT 5  ");
                                                              
                                 $stmt->execute();
                                 $comments = $stmt->fetchAll();

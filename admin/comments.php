@@ -23,6 +23,7 @@ if(isset($_SESSION['Username'])){
                                      items ON items.Item_ID = comments.Item_ID
                                INNER JOIN
                                      users ON users.UserID  = comments.User_ID    
+                               ORDER BY c_id DESC
                                ");
         $stmt->execute();
 
@@ -31,8 +32,8 @@ if(isset($_SESSION['Username'])){
         $rows = $stmt->fetchAll();
     ?>
         
-        <h1 class="text-center">Manage Comments</h1>
-         <div class="container">
+        <h1 class="text-center mt-3">Manage Comments</h1>
+         <div class="container mt-3">
          <div class="table-responsive">
              <table class="table table-bordered">
                 <tr>

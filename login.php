@@ -25,8 +25,7 @@
             $_SESSION['user'] = $user;  // register session name
             $_SESSION['userid'] = $get['UserID'];
             $_SESSION['avatar'] = $get['avatar'];
-            print_r($_SESSION);
-            header('Location: index.php');  //redirect to page dashboard.php
+            //header('Location: index.php');  //redirect to page dashboard.php
             exit();
         }else
         {
@@ -36,6 +35,14 @@
     else
     {
         $formErrors =[];
+
+        $avatarName = $_FILES['avatar']['name'];
+        $avatarSize = $_FILES['avatar']['size'];
+        $avatarTmp = $_FILES['avatar']['tmp_name'];
+        $avatarAllowedExtentions = ['jpeg','jpg','png','gif'];
+        $avatarexplode = explode('.',$avatarName);
+        $avatarExtention = strtolower(end($avatarexplode));
+
         if(isset($_POST['username']))
         {
             $filteredUser = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
@@ -82,8 +89,22 @@
                 $formErrors[] = 'Email isn\'t valid';
             }
         }
-        if(empty($formErrors))
+        if(empty($avatarName))
         {
+            $formErrors[] = "Profile picture can't be <strong>empty</strong>";
+        }
+        if(! empty($avatarName) && ! in_array($avatarExtention , $avatarAllowedExtentions))
+        {
+           $formErrors[] = "This image extention is <strong>Not Allowed</strong>";
+        }
+        if($avatarSize > 4194304)
+        {
+            $formErrors[] = "Profile picture can't be larger that <strong>4MB</strong>";
+        }
+        if(empty($formErrors))
+        {   
+            $avatar = time() . '_' . $avatarName;
+            move_uploaded_file($avatarTmp, "admin\uploads\avatars\\" . $avatar);
             //check if User Exists in Database
             $check = checkItem("Username","users", $_POST['username']); 
 
@@ -95,13 +116,14 @@
                //Insert into the data base with this info
                
                $stmt = $con->prepare("INSERT INTO 
-                                       users(Username, `Password`, Email, Fullname, Regstatus, `Date`)
-                                       VALUES(:user, :pass, :email, :fullname , 0,now())");
+                                       users(Username, `Password`, Email, Fullname, Regstatus, `Date`, avatar)
+                                       VALUES(:user, :pass, :email, :fullname , 0,now(), :avatar)");
                $stmt->execute(array(
                    'user' => $_POST['username'],
                    'pass' => $pass1,
                    'email' => $_POST['email'],
-                   'fullname' =>$_POST['fullname']
+                   'fullname' =>$_POST['fullname'],
+                   'avatar' => $avatar,
                ));
                //echo success message
                $theMsg = "<div class='alert alert-success'>Congrats your account has been Registered </div>";
@@ -138,7 +160,7 @@
     ?>
         <!-- END LOGIN FORM -->
         <!-- start signup form -->
-    <form class="signup" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+    <form class="signup" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="Inputuser">User Name</label>
             <input type="text" name="username" class="form-control" id="Inputuser">
@@ -159,6 +181,12 @@
             <label for="Inputemail">Email address</label>
             <input type="email" name="email" class="form-control" id="Inputemail">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="row form-group">
+            <label class="col-sm-1 control-label">Image</label>
+            <div class="col-sm-11">
+                <input type="file" name="avatar" class="form-control" required="required"  >
+            </div>
         </div>
         <button type="submit" name="signup" class="btn btn-success">SignUp</button>
     </form>

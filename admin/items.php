@@ -29,8 +29,8 @@ if(isset($_SESSION['Username'])){
          $items  = $stmt->fetchAll();
      ?>
          
-         <h1 class="text-center">Manage Items</h1>
-          <div class="container">
+         <h1 class="text-center mt-3">Manage Items</h1>
+          <div class="container mt-3">
           <div class="table-responsive">
               <table class="table table-bordered">
                  <tr>
@@ -77,8 +77,8 @@ if(isset($_SESSION['Username'])){
     }elseif($do =='Add')
     {?>
 
-        <h1 class="text-center">Add new Item</h1>
-        <div class="container">
+        <h1 class="text-center mt-3">Add new Item</h1>
+        <div class="container mt-3">
            <form class="form-horizontal" action="?do=Insert" method="POST" enctype="multipart/form-data">
            
                <div class="row form-group">
@@ -288,8 +288,8 @@ if(isset($_SESSION['Username'])){
        $count = $stmt->rowCount();
        echo '<div class="container">';
        if($count>0){ ?>
-         <h1 class="text-center">Edit Item</h1>
-        <div class="container">
+         <h1 class="text-center mt-3">Edit <?php echo $item['Name'] ?></h1>
+        <div class="container mt-3">
            <form class="form-horizontal" action="?do=Update" method="POST">
            <input type="hidden" name="itemid" value="<?php echo $itemid ?>">
                <div class="row form-group">

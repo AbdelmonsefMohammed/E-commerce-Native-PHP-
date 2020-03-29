@@ -25,25 +25,28 @@
             <img class='img-fluid w-100' src="admin/uploads/posts/<?php echo $item['Image']?>" class='card-img-top'>
             </div>
             <div class="col-8">
-                <p><?php echo $item['Description'] ?></p>
+                <p>Description : <?php echo $item['Description'] ?></p>
                 <span>Added in :<?php echo $item['Add_Date'] ?></span>
                 <div>Price : <?php echo $item['Price'] ?></div>
                 <div>Made in : <?php echo $item['Country_Made'] ?></div>
-                <div>Status <?php $status = $item['Status'];
+                <div>Status : <?php $status = $item['Status'];
                 echo str_replace(array(1,2,3,4),array('new','like new','used','fucked'), $status);?>
                 </div>
                 <div>Category : <?php echo $item['category_name'] ?></div>
                 <div>Added By : <?php echo $item['Username'] ?></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-8 offset-md-4">
-                <h3>Add your comment</h3>
+        <div class="row mt-4">
+            <div class="col-8">
+                <div class="card card-body bg-light">
+                <h3>Leave a Comment:</h3>
                 <form action="<?php $_SERVER['PHP_SELF'] . '?itemid=' . $item['Item_ID'] ?>" method="POST">
-                <textarea name="comment" id="" cols="60" rows="5" required></textarea>
+                <div class="form-group">
+                    <textarea class="form-control" name="comment" id="" rows="3" required></textarea>
+                </div>
                 <?php if(isset($_SESSION['user'])){ ?>
-                <input class="btn btn-success" type="submit" value="Add Comment">
-                <?php }else echo "<a class='btn btn-success' href='login.php'>Add Comment</a>" ?>
+                <input class="btn btn-success" type="submit" value="Submit">
+                <?php }else {echo "<a class='btn btn-success' href='login.php'>Submit</a>";} ?>
                 </form>
                 <?php
                     if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -69,12 +72,14 @@
                     }
 
                 ?>
+                </div>
             </div>
         </div>
+        <hr>
         <?php
             
             $stmt = $con->prepare("SELECT
-                                        comments.* , users.Username 
+                                        comments.* , users.*
                                 FROM 
                                         comments
                                 INNER JOIN
@@ -94,13 +99,21 @@
             <?php
             foreach($comments as $comment)
             {
-                echo $comment['comment'] . '<br>';
-                echo $comment['comment_date'] . '<br>';
-                echo $comment['Username'] . '<br>';
-                echo $comment['user_id'] . '<br>';
+                echo "<div class='media col-8 pb-3'>
+                    <a class='pull-left' href='#'>
+                        <img class='media-object' src='admin/uploads/avatars/{$comment['avatar']}' alt='' style='width:64px;height:64px;' >
+                    </a>
+                    <div class='media-body pl-2'>
+                        <h4 class='media-heading'>{$comment['Username']}
+                            <small>{$comment['comment_date']}</small>
+                        </h4>
+                        {$comment['comment']}
+                    </div>
+                </div>";
             }
             ?>
         </div>
+
     </div>
 
     <?php

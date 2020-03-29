@@ -18,8 +18,8 @@ if(isset($_SESSION['Username'])){
         $stmt->execute();
         $categ = $stmt->fetchAll();?>
 
-        <h1 class="text-center">Edit Categories</h1>
-        <div class="container categories">
+        <h1 class="text-center mt-3">Manage Categories</h1>
+        <div class="container categories mt-3">
             <div class="card">
                 <div class="card-header ">
                     Manage Categories
@@ -84,8 +84,8 @@ if(isset($_SESSION['Username'])){
         <?php
     }elseif($do == 'Add'){?>
 
-         <h1 class="text-center">Add new Category</h1>
-         <div class="container">
+         <h1 class="text-center mt-3">Add new Category</h1>
+         <div class="container mt-3">
             <form class="form-horizontal" action="?do=Insert" method="POST">
             
                 <div class="row form-group">
@@ -244,8 +244,8 @@ if(isset($_SESSION['Username'])){
         $count = $stmt->rowCount();
         echo '<div class="container">';
         if($count>0){ ?>
-         <h1 class="text-center">Edit Categorie</h1>
-         <form class="form-horizontal" action="?do=Update" method="POST">
+         <h1 class="text-center mt-3">Edit <?php echo $cat['Name'] ?></h1>
+         <form class="form-horizontal mt-3" action="?do=Update" method="POST">
          <input type="hidden" name="catid" value="<?php echo $catid; ?>">
             
                 <div class="row form-group">

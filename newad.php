@@ -15,6 +15,13 @@
             $status     = filter_var($_POST['status'] , FILTER_SANITIZE_NUMBER_INT);
             $category   = filter_var($_POST['category'] , FILTER_SANITIZE_NUMBER_INT);
             $values = [$name , $desc , $price , $country , $status , $category];
+
+            $imageName = $_FILES['image']['name'];
+            $imageSize = $_FILES['image']['size'];
+            $imageTmp = $_FILES['image']['tmp_name'];
+            $imageAllowedExtentions = ['jpeg','jpg','png','gif'];
+            $imageexplode = explode('.',$imageName);
+            $imageExtention = strtolower(end($imageexplode));
             if(empty($name))
             {
                 $formErrors[] = 'Item name can\'t be empty';
@@ -57,9 +64,23 @@
             {
                 $formErrors[] = 'Category field can\'t be empty';
             }
+            if(empty($imageName))
+            {
+                $formErrors[] = "Profile picture can't be <strong>empty</strong>";
+            }
+            if(! empty($imageName) && ! in_array($imageExtention , $imageAllowedExtentions))
+            {
+               $formErrors[] = "This image extention is <strong>Not Allowed</strong>";
+            }
+            if($imageSize > 4194304)
+            {
+                $formErrors[] = "Profile picture can't be larger that <strong>4MB</strong>";
+            }
 
             if(empty($formErrors))
             {
+                $image = time() . '_' . $imageName;
+                move_uploaded_file($imageTmp, "admin\uploads\posts\\" . $image);
                 //check if User Exists in Database
                 $check = checkItem("name","items", $name); 
    
@@ -73,13 +94,14 @@
                    //Insert into the data base with this info
                    
                    $stmt = $con->prepare("INSERT INTO 
-                                           items(`Name`, `Description`, Price, Country_made, `Status`, Add_Date, Cat_ID, Member_ID)
-                                           VALUES(:name, :desc, :price, :country , :status, now(), :cat, :member)");
+                                           items(`Name`, `Description`, Price, Country_made,`Image`, `Status`, Add_Date, Cat_ID, Member_ID)
+                                           VALUES(:name, :desc, :price, :country, :image, :status, now(), :cat, :member)");
                    $stmt->execute(array(
                        'name'      => $name,
                        'desc'      => $desc,
                        'price'     => $price,
                        'country'   => $country,
+                       'image'     => $image,
                        'status'    => $status,
                        'cat'       => $category,
                        'member'    => $_SESSION['userid']
@@ -98,7 +120,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                        <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
             
                             <div class="row form-group">
                                 <label class="col-sm-2 control-label">Name</label>
@@ -129,6 +151,12 @@
                                 <div class="col-sm-10">
                                     <input type="text" name="country"  class="form-control" autocomplete="off"
                                     placeholder="country of made">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-sm-2 control-label">Image</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="image" class="form-control" required="required">
                                 </div>
                             </div>
 

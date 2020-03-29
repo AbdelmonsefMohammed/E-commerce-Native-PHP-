@@ -28,8 +28,8 @@ if(isset($_SESSION['Username'])){
         $rows = $stmt->fetchAll();
     ?>
         
-        <h1 class="text-center">Manage Member</h1>
-         <div class="container">
+        <h1 class="text-center mt-3">Manage Member</h1>
+         <div class="container mt-3">
          <div class="table-responsive">
              <table class="table table-bordered">
                 <tr>
